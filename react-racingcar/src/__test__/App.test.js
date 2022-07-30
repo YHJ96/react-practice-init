@@ -5,7 +5,7 @@ import App from '../App';
 const getById = queryByAttribute.bind(null, 'id');
 
 describe("🚀 random 테스트 케이스", () => {
-    test("Random의 pickUniqueNumbersInRange 메소드를 사용하여 랜덤값을 생성해야합니다.", () => {
+    test("Random의 pickNumberInRange 메소드를 사용하여 랜덤값을 생성해야합니다.", () => {
         const { container } = render(<App />);
         const randomSpy = jest.spyOn(global.MissionUtils.Random, "pickNumberInRange");
         const $textInput = getById(container, "text-input");
