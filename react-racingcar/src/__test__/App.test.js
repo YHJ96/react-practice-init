@@ -32,9 +32,9 @@ describe("✅ input 테스트 케이스", () => {
     test("#number-input의 입력값에 맞게 입력값이 변해야합니다2.", () => {
         const { container } = render(<App />);
         const $textInput = getById(container, "number-input");
-        fireEvent.change($textInput, { target: { value: "0" } });
-        const inputValue = screen.getByDisplayValue("0");
-        expect(inputValue.value).toEqual("0");
+        fireEvent.change($textInput, { target: { value: "10" } });
+        const inputValue = screen.getByDisplayValue("10");
+        expect(inputValue.value).toEqual("10");
     });
 
     test("자동차의 이름은 (,)로 구분하며 버튼을 누른 경우 각각의 자동차이름이 6글자 이상일 경우 경고창으로 나타내야 합니다.", () => {
