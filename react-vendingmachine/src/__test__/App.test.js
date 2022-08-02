@@ -1,10 +1,9 @@
-import { render, screen, queryByAttribute } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from '../App';
 
-const getById = queryByAttribute.bind(null, 'id');
 const location = window.location;
 const history = window.history;
 
@@ -44,22 +43,22 @@ describe("📟 react-router-dom 테스트 케이스", () => {
 
   test("상품 관리 버튼을 누르면 '/' 페이지로 랜더링 되야합니다.", () => {
     history.pushState({}, null, "/charge");
-    const { container } = render(<App/>, { wrapper: BrowserRouter });
-    const $management = getById(container, "management-button");
+    render(<App/>, { wrapper: BrowserRouter });
+    const $management = screen.getByRole("button", { name: "상품 관리" });
     userEvent.click($management);
     expect(location.pathname).toBe("/");
   });
   
   test("잔돈 충전 버튼을 누르면 '/charge' 페이지로 랜더링 되야합니다.", () => {
-    const { container } = render(<App/>, { wrapper: BrowserRouter });
-    const $chargement = getById(container, "charge-button");
+    render(<App/>, { wrapper: BrowserRouter });
+    const $chargement = screen.getByRole("button", { name: "잔돈 충전" });
     userEvent.click($chargement);
     expect(location.pathname).toBe("/charge");
   });
 
   test("상품 구매 버튼을 누르면 '/product' 페이지로 랜더링 되야합니다.", () => {
-    const { container } = render(<App/>, { wrapper: BrowserRouter });
-    const $productment = getById(container, "product-button");
+    render(<App/>, { wrapper: BrowserRouter });
+    const $productment = screen.getByRole("button", { name: "상품 구매" });
     userEvent.click($productment);
     expect(location.pathname).toBe("/product");
   });
