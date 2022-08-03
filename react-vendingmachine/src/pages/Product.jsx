@@ -20,6 +20,7 @@ function Product() {
           </tr>
         </thead>
         <tbody>
+          {/* 아래는 테이블 예시 데이터 입니다. 확인후 지워주세요!!*/}
           <tr>
             <td>콜라</td>
             <td>1500</td>
