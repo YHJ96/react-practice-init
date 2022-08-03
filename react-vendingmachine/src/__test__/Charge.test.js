@@ -1,4 +1,4 @@
-import { render, screen, queryByAttribute, getAllByAltText } from '@testing-library/react';
+import { render, screen, queryByAttribute } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Charge from '../pages/Charge';
 
@@ -77,19 +77,23 @@ describe("📀 잔돈 충전 탭 테스트 케이스", () => {
     expect(coins[10]).toBe(35);
   });
 
-  // props 랜더링 문제
   test("추가 충전 금액만큼의 동전이 무작위로 생성되어 기존 동전들에 더해져야 합니다.", () => {
     const randomSpy = jest.spyOn(global.MissionUtils.Random, "pickNumberInRange");
     randomSpy.mockReturnValue(1)
     let coins = { "500": 0, "100": 0, "50": 0, "10": 0 };
-    const { container } = render(<Charge coins={coins} setCoins={setCoins} />);
+    const { container, rerender } = render(<Charge coins={coins} setCoins={setCoins} />);
     const $input = getById(container, "charge-input");
     const $button = screen.getByRole("button", { name: "충전하기" });
-    setCoins.mockImplementation((param) => { console.log(param) });
+    setCoins.mockImplementation((param) => { coins = param });
     userEvent.type($input, "1000");
     userEvent.click($button, { target: { [$input.name]: { value: "1000" } } });
+    rerender(<Charge coins={coins} setCoins={setCoins} />)
     userEvent.type($input, "1000");
     userEvent.click($button, { target: { [$input.name]: { value: "1000" } } });
     expect(setCoins).toBeCalledTimes(2);
+    expect(coins[500]).toBe(2);
+    expect(coins[100]).toBe(2);
+    expect(coins[50]).toBe(2);
+    expect(coins[10]).toBe(70);
   });
 });
