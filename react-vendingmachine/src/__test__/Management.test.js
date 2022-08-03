@@ -114,9 +114,9 @@ describe("✅ input 테스트 케이스", () => {
 
 describe("🥤 상품 관리 탭 테스트 케이스", () => {
   test("최초 상품 목록은 비워진 상태여야 합니다.", () => {
-    const product = [];
-    const setProduct = jest.mock();
-    const { container } = render(<Management product={product} setProduct={setProduct}/>);
+    const products = [];
+    const setProducts = jest.mock();
+    const { container } = render(<Management products={products} setProducts={setProducts}/>);
     // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
     const $td = container.querySelectorAll("td");
     expect($td).toHaveLength(0);
