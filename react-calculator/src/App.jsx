@@ -22,7 +22,7 @@ const App = () => {
             </div>
             <div className="operations subgrid">
                 <button className="operation">/</button>
-                <button className="operation">X</button>
+                <button className="operation">x</button>
                 <button className="operation">-</button>
                 <button className="operation">+</button>
                 <button className="operation">=</button>
